@@ -22,5 +22,6 @@
         @env ('local')
             <script src="http://localhost:3000/browser-sync/browser-sync-client.js"></script>
         @endenv
+        <h1>holla</h1>
     </body>
 </html>

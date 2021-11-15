@@ -27,3 +27,13 @@ Route::get('/', function () {
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->name('dashboard');
+
+Route::get('/index', function()
+{
+    return View::make('welcome');
+});
+
+Route::get('/new', function()
+{
+    return View::make('newClient');
+});
