@@ -37,3 +37,5 @@ Route::get('/new', function()
 {
     return View::make('newClient');
 });
+
+Route::get('/newMem');

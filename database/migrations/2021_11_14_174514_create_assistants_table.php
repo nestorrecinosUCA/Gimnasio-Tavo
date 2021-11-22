@@ -20,7 +20,7 @@ class CreateAssistantsTable extends Migration
             $table->date('birthday');
             $table->string('gender');
             $table->string('code')->nullable();
-            $table->integer('membership');
+            $table->integer('membership_id');
             $table->timestamps();
         });
     }
