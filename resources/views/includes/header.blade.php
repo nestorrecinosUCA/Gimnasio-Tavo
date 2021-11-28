@@ -12,9 +12,10 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-link active" aria-current="/" href="/">Inicio</a>
-        <a class="nav-link" href="/">Agregar cliente</a>
-        
+        <a class="nav-link" aria-current="/" href="/">Inicio</a>
+        <a class="nav-link" href="/assistants/create">Agregar cliente</a>
+        <a class="nav-link text-primary" href="/login">Login</a>
+        <a class="nav-link text-primary" href="/register">Register</a>
 
       </div>
     </div>

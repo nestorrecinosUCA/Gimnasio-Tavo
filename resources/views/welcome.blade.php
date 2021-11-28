@@ -35,15 +35,22 @@
     </tr>
 </thead>
 <tbody>
-    <tr>
-        <th scope="row">1</th>
-        <td>Nestor Esau Recinos Escobar</td>
-        <td>culero</td>
-        <td>10/10/2001</td>
-        <td>15 dias</td>
-        <td><a href="">Editar</a></td>
-        <td><a href="">Eliminar</a></td>
-    </tr>
+    @foreach ($assistants as $assistant)
+        <tr>
+            <th scope="row">{{$assistant->code}}</th>
+            <td>{{$assistant->first_name . ' ' .$assistant->last_name}}</td>
+            <td>{{$assistant->gender}}</td>
+            <td>{{$assistant->birthday}}</td>
+            <td>{{$assistant->membership->membership_name}}</td>
+            <td><a href="/assistants/update/{{$assistant->id}}">Editar</a></td>
+            <td>
+                <form action="/assistants/delete/{{$assistant->id}}" method="post">
+                    @csrf
+                    <button class="text-danger bold">Eliminar</button>
+                </form>
+            </td>
+        </tr>
+    @endforeach
 
 </tbody>
 </table>

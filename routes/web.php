@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AssistantController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -28,14 +29,10 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->name('dashboard');
 
-Route::get('/index', function()
-{
-    return View::make('welcome');
+Route::get('/', [AssistantController::class, 'index']);
+Route::middleware('auth')->group(function(){
+    Route::get('/assistants/create', [AssistantController::class, 'create']);
+    Route::post('/assistants/save', [AssistantController::class, 'store']);
+    Route::post('/assistants/delete/{id}', [AssistantController::class, 'destroy']);
 });
-
-Route::get('/new', function()
-{
-    return View::make('newClient');
-});
-
 Route::get('/newMem');

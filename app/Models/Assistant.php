@@ -9,7 +9,7 @@ class Assistant extends Model
 {
     protected $fillable = [
         'first_name',
-        'second_name',
+        'last_name',
         'birthday',
         'gender',
         'code',

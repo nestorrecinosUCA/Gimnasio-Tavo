@@ -17,47 +17,49 @@
 <div class="container bg-white rounded py-6">
     <div class="row">
         <div class="col-12">
-        <form>
-    <div class="form-row">
-    <div class="form-group col-md-6">
-        <label for="inputname">Nombre</label>
-        <input type="text" class="form-control" id="inputname" placeholder="Nombre">
-    </div>
-    <div class="form-group col-md-6">
-        <label for="inputsecondName">Apellido</label>
-        <input type="text" class="form-control" id="inputsecondName" placeholder="Apellido">
-    </div>
-</div>
-<div class="form-row">
-    <div class="form-group col-md-6">
-        <label for="birthday">fecha de nacimiento</label>
-        <input type="date" class="form-control" id="birthday" placeholder="fecha de nacimiento">
-    </div>
-    <div class="form-group col-md-6">
-    <label for="inputState">genero</label>
-    <select id="inputGender" class="form-control">
-        <option disabled="disabled" selected>genero</option>
-        <option>hombre</option>
-        <option>mujer</option>
-        </select>
-    </div>
-    </div>
-    <div class="form-row">
-    <div class="form-group col-md-6">
-        <label for="inputmembership">membresia</label>
-        <select id="inputmembership" class="form-control">
-        <option disabled="disabled" selected>tipo de membresia</option>
-        <option>15 dias</option>
-        <option>30 dias</option>
-        </select>
-    </div>
+            <form method="POST" action="/assistants/save">
+                @csrf
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputname">Nombre</label>
+                        <input type="text" class="form-control" id="inputname" name="inputname" placeholder="Nombre">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputsecondName">Apellido</label>
+                        <input type="text" class="form-control" id="inputsecondName" name="inputsecondName" placeholder="Apellido">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="birthday">fecha de nacimiento</label>
+                        <input type="date" class="form-control" id="birthday" name="birthday" placeholder="fecha de nacimiento">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputGender">Genero</label>
+                        <select id="inputGender" name="inputGender" class="form-control">
+                            <option disabled="disabled" selected>genero</option>
+                            <option  value="Hombre">Hombre</option>
+                            <option  value="Mujer">Mujer</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputmembership">Membresia</label>
+                        <select id="inputMembership" name="inputMembership" class="form-control">
+                            <option disabled="disabled" selected>Tipo de Membresia</option>
+                            @foreach ($memberships as $membership)
+                                <option value="{{$membership->id}}">{{$membership->membership_name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
 
-    <div class="form-group col-md-6" >
-    <button   type="submit" class="btn btn-primary btn-lg  mt-6">Subscribirse</button>
-        </div>
-    </div>    
-</div>
-</form>
+                    <div class="form-group col-md-6" >
+                    <button   type="submit" class="btn btn-primary btn-lg  mt-6">Subscribirse</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 </div>
