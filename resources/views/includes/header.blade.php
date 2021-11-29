@@ -13,9 +13,12 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
         <a class="nav-link" aria-current="/" href="/">Inicio</a>
+        <a class="nav-link" aria-current="/" href="/logout">logout</a>
         <a class="nav-link" href="/assistants/create">Agregar cliente</a>
+        @if (!$isAuth)
         <a class="nav-link text-primary" href="/login">Login</a>
         <a class="nav-link text-primary" href="/register">Register</a>
+        @endif
 
       </div>
     </div>

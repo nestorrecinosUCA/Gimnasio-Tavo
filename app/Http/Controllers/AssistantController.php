@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Assistant;
 use App\Models\Membership;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AssistantController extends Controller
 {
@@ -15,8 +16,9 @@ class AssistantController extends Controller
      */
     public function index()
     {
+        $isAuth = Auth::check();
         $assistants = Assistant::with('membership')->get('*');
-        return view('welcome', compact('assistants'));
+        return view('welcome', compact('assistants', 'isAuth'));
     }
 
     /**
@@ -26,8 +28,9 @@ class AssistantController extends Controller
      */
     public function create()
     {
+        $isAuth = Auth::check();
         $memberships = Membership::get('*');
-        return view('newClient', compact('memberships'));
+        return view('newClient', compact('memberships', 'isAuth'));
     }
 
     /**
@@ -38,6 +41,7 @@ class AssistantController extends Controller
      */
     public function store(Request $request)
     {
+        $isAuth = Auth::check();
         $randomNum = rand(1000,9999);
         $name = $request->inputname;
         $secondName = $request->inputsecondName;
@@ -50,7 +54,6 @@ class AssistantController extends Controller
             'membership_id' => $request->inputMembership,
             'code' => $code
         ]);
-
         return redirect('/');
     }
 
@@ -73,7 +76,11 @@ class AssistantController extends Controller
      */
     public function edit($id)
     {
-        //
+        $assistants = Assistant::where('id',$id)->get('*');
+        $memberships = Membership::select('id', 'membership_name')->get();
+        $isAuth = Auth::check();
+        //dd($assistant);
+        return view('updateClient', compact('assistants', 'memberships', 'isAuth'));
     }
 
     /**
@@ -85,7 +92,14 @@ class AssistantController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $assistantToUpdate = Assistant::find($id);
+        $assistantToUpdate->first_name = $request->inputname;
+        $assistantToUpdate->last_name = $request->inputsecondName;
+        $assistantToUpdate->birthday = $request->birthday;
+        $assistantToUpdate->gender = $request->inputGender;
+        $assistantToUpdate->membership_id = $request->inputMembership;
+        $assistantToUpdate->save();
+        return redirect('/');
     }
 
     /**

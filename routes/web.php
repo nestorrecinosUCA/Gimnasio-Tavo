@@ -34,5 +34,7 @@ Route::middleware('auth')->group(function(){
     Route::get('/assistants/create', [AssistantController::class, 'create']);
     Route::post('/assistants/save', [AssistantController::class, 'store']);
     Route::post('/assistants/delete/{id}', [AssistantController::class, 'destroy']);
+    Route::get('/assistants/update/{id}', [AssistantController::class, 'edit']);
+    Route::post('/assistants/update/{id}/save', [AssistantController::class, 'update']);
 });
 Route::get('/newMem');
